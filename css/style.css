@@ -1,0 +1,22 @@
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+.social-icons a {
+  margin: 0 10px;
+  color: #000;
+}
+
+.carousel {
+  border: 2px solid #007bff; /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  overflow: hidden; /* Prevents overflow of content */
+}
+
+body{
+  background-image:url(../utility/bg.jpg);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-size:100% 100%;
+}

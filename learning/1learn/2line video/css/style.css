@@ -1,0 +1,111 @@
+/* Custom styles for chapter markers */
+.chapter-marker {
+  position: absolute;
+  height: 100%;
+  width: 5px;
+  background-color: red;
+  cursor: pointer;
+}
+
+.progress-container {
+  position: relative;
+}
+
+.chapter-label {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  /*
+  transform: translateX(-50%);
+  */
+  font-size: 0.8rem;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Hide labels for very small screens */
+@media (max-width: 575px) {
+  .chapter-label {
+    /*display: none;*/
+    display: flex;
+  }
+}
+
+/* Button styles */
+.overlay-button {
+  position: absolute;
+  width: 10%; /* 10% of video width */
+  height: 10%; /* 10% of video height */
+  z-index: -1; /* Layer below video controls */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.5s; /* Smooth transition for appearance */
+  background-size: cover; /* Cover the entire button area */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+  border: none; /* Remove default button border */
+  cursor: pointer; /* Pointer cursor */
+}
+
+/* Button 1 styles with background image */
+#btn1 {
+  top: 40%; /* Adjust vertical position */
+  left: 35%; /* Adjust horizontal position */
+  transform: translateX(-50%);
+  background-image: url('image1.jpg'); /* Set background image for Button 1 */
+}
+
+/* Button 2 styles with background image */
+#btn2 {
+  top: 40%; /* Adjust vertical position */
+  left: 65%; /* Adjust horizontal position */
+  transform: translateX(-50%);
+  background-image: url('image2.jpg'); /* Set background image for Button 2 */
+}
+
+
+
+.back{
+	position: fixed;
+	bottom: 5px;
+	left: 5px;
+	outline: none;
+	border: none;
+	height: 60px;
+	width: 60px;
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-image: url(back1.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	cursor: pointer;
+	transition: all 0.2s ease;
+  }
+
+  .btnq{
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    outline: none;
+    border: none;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-image: url(q1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    }
