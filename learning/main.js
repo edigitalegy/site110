@@ -9,7 +9,11 @@ let arrayOfuser = [];
 //-------------------------add users------------------------------------//
 let arrayOfTasks = [];
 let arrayOfTaskstwo = [];
+let arrayOfTasksthree = [];
+let arrayOfTasksfour = [];
 
+var useridfour = "four";
+var useridthree = "three";
 var useridtwo = "two";
 var userid = "one";
 var num = 60;
@@ -35,6 +39,26 @@ function addTaskToArray()
   };
   arrayOfTaskstwo.push(task);
   }
+
+  for(let i =1;i<=num;i++)
+    {
+      userid = "three"+i;
+      const task = {
+      id: userid,
+      pass: 12345,
+    };
+    arrayOfTasksthree.push(task);
+    }
+
+  for(let i =1;i<=num;i++)
+    {
+      userid = "four"+i;
+      const task = {
+      id: userid,
+      pass: 12345,
+    };
+    arrayOfTasksfour.push(task);
+    }
 
 }
 
@@ -85,4 +109,35 @@ function funuser()
    		}
  
   } 
+
+  for(let i =0;i<arrayOfTasksthree.length;i++)
+    {  
+     if (inputname == arrayOfTasksthree[i].id) 
+         {
+          const taskuser = 
+          {
+            id: inputname,
+            pass: inputpass,
+          };
+            arrayOfuser.push(taskuser);
+            location.href="1learn/index.html";
+         }
+   
+    } 
+
+    for(let i =0;i<arrayOfTasksfour.length;i++)
+      {  
+       if (inputname == arrayOfTasksfour[i].id) 
+           {
+            const taskuser = 
+            {
+              id: inputname,
+              pass: inputpass,
+            };
+              arrayOfuser.push(taskuser);
+              location.href="2learn/index.html";
+           }
+     
+      } 
+    
 }
