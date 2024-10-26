@@ -27,7 +27,7 @@ const btnv6 = document.getElementById("btnv6");
 //-----------------------------adress markers--------------------------------------//
 const totalChapters = 5;
 const chapterNames = ["مقدمة", "الاستشعار", "المنزل", "المدن","الصحة"];
-let chapterTimes = [0,102,150,155,170,182];
+let chapterTimes = [0,102,150,155,177,182];
 
 let num =0;
 let labelPercentage = 0;
