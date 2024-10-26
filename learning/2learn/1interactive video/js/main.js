@@ -32,58 +32,56 @@ let chapterTimes = [0,102,150,155,170,182];
 let num =0;
 let labelPercentage = 0;
   // Add chapter markers and labels to the progress bar
-  videoPlayer.addEventListener("loadedmetadata", function () {
-    const videoDuration = videoPlayer.duration;
-    //chapterTimes = [];
 
-    for (let i = 0; i < totalChapters; i++) {
-     // const chapterTime = (videoDuration / totalChapters) * (i + 1);
-      const chapterTime = chapterTimes[i];
+videoPlayer.addEventListener("loadedmetadata", function () 
+{
+  const videoDuration = videoPlayer.duration;
+  //chapterTimes = [];
+  for (let i = 0; i < totalChapters; i++) 
+  {
+    // const chapterTime = (videoDuration / totalChapters) * (i + 1);
+    const chapterTime = chapterTimes[i];
+    // chapterTimes.push(chapterTime);
+    const chapterPercentage = (chapterTime / videoDuration) * 100;
+    // Create the chapter marker
+    const marker = document.createElement("div");
+    marker.classList.add("chapter-marker");
+    marker.style.left = `${chapterPercentage}%`;
+    // Create the chapter label
+    const label = document.createElement("div");
+    label.classList.add("chapter-label");
+    label.style.left = `${chapterPercentage}%`;
+    label.innerText = chapterNames[i];
 
-     // chapterTimes.push(chapterTime);
+    if(i < totalChapters)
+    {
+      num = i+1;
+      labelPercentage = (chapterTimes[num] / videoDuration) * 100 - (chapterTimes[i] / videoDuration) * 100 ;
+      label.style.width =  `${labelPercentage}%`;
 
-      const chapterPercentage = (chapterTime / videoDuration) * 100;
-
-      // Create the chapter marker
-      const marker = document.createElement("div");
-      marker.classList.add("chapter-marker");
-      marker.style.left = `${chapterPercentage}%`;
-
-      // Create the chapter label
-      const label = document.createElement("div");
-      label.classList.add("chapter-label");
-      label.style.left = `${chapterPercentage}%`;
-      label.innerText = chapterNames[i];
-
-      if(i < totalChapters)
-      {
-        num = i+1;
-        labelPercentage = (chapterTimes[num] / videoDuration) * 100 - (chapterTimes[i] / videoDuration) * 100 ;
-        label.style.width =  `${labelPercentage}%`;
-
-      }
-      if(num == totalChapters)
-      {
-        labelPercentage = (videoDuration / videoDuration) * 100 - (chapterTimes[i] / videoDuration) * 100 ;
-        label.style.width =  `${labelPercentage}%`;      
-      }
-
-      // Set up click event for the marker
-      marker.addEventListener("click", function () {
-        //videoPlayer.currentTime = chapterTime - (videoDuration / totalChapters);
-        videoPlayer.currentTime = chapterTimes[i];
-      });
-
-      label.addEventListener("click", function () {
-        //videoPlayer.currentTime = chapterTime - (videoDuration / totalChapters);
-        videoPlayer.currentTime = chapterTimes[i];
-      });
-
-      // Append marker and label to the container
-      markerContainer.appendChild(marker);
-      markerContainer.appendChild(label);
     }
-  });
+    if(num == totalChapters)
+    {
+      labelPercentage = (videoDuration / videoDuration) * 100 - (chapterTimes[i] / videoDuration) * 100 ;
+      label.style.width =  `${labelPercentage}%`;      
+    }
+
+    // Set up click event for the marker
+    marker.addEventListener("click", function () {
+      //videoPlayer.currentTime = chapterTime - (videoDuration / totalChapters);
+      videoPlayer.currentTime = chapterTimes[i];
+    });
+
+    label.addEventListener("click", function () {
+      //videoPlayer.currentTime = chapterTime - (videoDuration / totalChapters);
+      videoPlayer.currentTime = chapterTimes[i];
+    });
+
+    // Append marker and label to the container
+    markerContainer.appendChild(marker);
+    markerContainer.appendChild(label);
+  }
+});
 
 
   //----------------------------btn modal control------------------------------------------//
@@ -111,70 +109,89 @@ let labelPercentage = 0;
   btnv6.addEventListener("click", function () {
     v6.pause();
   });
+
   //----------------------------btn modal control------------------------------------------//
-
-
   // Update the progress bar as the video plays
-  videoPlayer.addEventListener("timeupdate", function () {
-    const progressPercentage = (videoPlayer.currentTime / videoPlayer.duration) * 100;
-    progressBar.style.width = `${progressPercentage}%`;
 
-    // Show buttons when video reaches item 2
-    if (videoPlayer.currentTime >= chapterTimes[1] && videoPlayer.currentTime < chapterTimes[1]+.2) 
-    {
-      btn1.style.opacity = 1; // Show button 1
-      btn2.style.opacity = 1; // Show button 2
-      btn2.style.zIndex = 1;
-      btn1.style.zIndex = 1;
-      videoPlayer.pause();
-    } else {
-      btn1.style.opacity = 0; // Hide button 1
-      btn2.style.opacity = 0; // Hide button 2
-      btn2.style.zIndex = -1;
-      btn1.style.zIndex = -1;
-    }
+let videocheck = [true,true,true,true,true,true];
+let btnarray = [btn1,btn2,btn3,btn4,btn5,btn6,btn7];
 
-    if (videoPlayer.currentTime >= chapterTimes[2] && videoPlayer.currentTime < chapterTimes[2]+.2) 
-    {
-      btn3.style.opacity = 1; // Show button 1
-      btn3.style.zIndex = 1;
-      videoPlayer.pause();
-    } else {
-      btn3.style.opacity = 0; // Hide button 1
-      btn3.style.zIndex = -1;
-    }
-    if (videoPlayer.currentTime >= chapterTimes[3] && videoPlayer.currentTime < chapterTimes[3]+.2) 
-    {
-      btn4.style.opacity = 1; // Show button 1
-      btn4.style.zIndex = 1;
-      videoPlayer.pause();
-    } else {
-      btn4.style.opacity = 0; // Hide button 1
-      btn4.style.zIndex = -1;
-    }
-
-    if (videoPlayer.currentTime >= chapterTimes[4] && videoPlayer.currentTime < chapterTimes[4]+.2) 
-    {
-      btn5.style.opacity = 1; // Show button 1
-      btn6.style.opacity = 1; // Show button 2
-      btn5.style.zIndex = 1;
-      btn6.style.zIndex = 1;
-      videoPlayer.pause();
-    } else {
-      btn5.style.opacity = 0; // Hide button 1
-      btn6.style.opacity = 0; // Hide button 2
-      btn5.style.zIndex = -1;
-      btn6.style.zIndex = -1;
-    }
-
-    if (videoPlayer.currentTime >= chapterTimes[5] && videoPlayer.currentTime < chapterTimes[5]+.2) 
+videoPlayer.onplay = function() {
+  for(let i=0; i<btnarray.length;i++)
+  {
+    if(btnarray[i].style.opacity == 1)
       {
-        btn7.style.opacity = 1; // Show button 1
-        btn7.style.zIndex = 1;
-        videoPlayer.pause();
-      } else {
-        btn7.style.opacity = 0; // Hide button 1
-        btn7.style.zIndex = -1;
+        btnarray[i].style.opacity = 0; // Hide button 1
+        btnarray[i].style.zIndex = -1;
+        console.log(btnarray[i]);
       }
-  });
+  }
+    if (videoPlayer.currentTime < chapterTimes[1] && videocheck[1] == false) 
+      {
+        videocheck[1] =true;
+      }
+    if (videoPlayer.currentTime < chapterTimes[2] && videocheck[2] == false) 
+      {
+        videocheck[2] =true;
+      }
+    if (videoPlayer.currentTime < chapterTimes[3] && videocheck[3] == false) 
+      {
+        videocheck[3] =true;
+      }
+    if (videoPlayer.currentTime < chapterTimes[4] && videocheck[4] == false) 
+      {
+        videocheck[4] =true;
+      }
+    if (videoPlayer.currentTime < chapterTimes[5] && videocheck[5] == false) 
+      {
+        videocheck[5] =true;
+      }
+  };
+
+  videoPlayer.addEventListener("timeupdate",  onTimeUpdate) 
+    function onTimeUpdate() 
+    {
+      const progressPercentage = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+      progressBar.style.width = `${progressPercentage}%`;
+      if (videoPlayer.currentTime >= chapterTimes[1] && videoPlayer.currentTime < chapterTimes[1]+1 && videocheck[1] == true) 
+        {
+          btn1.style.opacity = 1; // Show button 1
+          btn2.style.opacity = 1; // Show button 2
+          btn2.style.zIndex = 1;
+          btn1.style.zIndex = 1; 
+          videoPlayer.pause();
+          videocheck[1]=false;
+        } 
+        if (videoPlayer.currentTime >= chapterTimes[2] && videoPlayer.currentTime < chapterTimes[2]+1 && videocheck[2] == true) 
+        {
+          btn3.style.opacity = 1; // Show button 1
+          btn3.style.zIndex = 1;
+          videoPlayer.pause();
+          videocheck[2]=false;
+        } 
+        if (videoPlayer.currentTime >= chapterTimes[3] && videoPlayer.currentTime < chapterTimes[3]+1 && videocheck[3] == true) 
+        {
+          btn4.style.opacity = 1; // Show button 1
+          btn4.style.zIndex = 1;
+          videoPlayer.pause();
+          videocheck[3]=false;
+
+        } 
+        if (videoPlayer.currentTime >= chapterTimes[4] && videoPlayer.currentTime < chapterTimes[4]+1 && videocheck[4] == true) 
+        {
+          btn5.style.opacity = 1; // Show button 1
+          btn6.style.opacity = 1; // Show button 2
+          btn5.style.zIndex = 1;
+          btn6.style.zIndex = 1;
+          videoPlayer.pause();
+          videocheck[4]=false;
+        } 
+      if (videoPlayer.currentTime >= chapterTimes[5] && videoPlayer.currentTime < chapterTimes[5]+1 && videocheck[5] == true) 
+        {
+          btn7.style.opacity = 1; // Show button 1
+          btn7.style.zIndex = 1;
+          videoPlayer.pause();
+          videocheck[5]=false;
+        } 
+    }
 });
