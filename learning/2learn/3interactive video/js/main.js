@@ -117,15 +117,49 @@ let chapterTimes = [0,22,52,75];
     v6.pause();
   });
   //----------------------------btn modal control------------------------------------------//
+  let videocheck = [true,true,true,true,true,true];
+  let btnarray = [btn1,btn2,btn3,btn4,btn5,btn6,btn7];
+  
+  videoPlayer.onplay = function() {
+    for(let i=0; i<btnarray.length;i++)
+    {
+      if(btnarray[i].style.opacity == 1)
+        {
+          btnarray[i].style.opacity = 0; // Hide button 1
+          btnarray[i].style.zIndex = -1;
+          console.log(btnarray[i]);
+        }
+    }
+      if (videoPlayer.currentTime < chapterTimes[1] && videocheck[1] == false) 
+        {
+          videocheck[1] =true;
+        }
+      if (videoPlayer.currentTime < chapterTimes[2] && videocheck[2] == false) 
+        {
+          videocheck[2] =true;
+        }
+      if (videoPlayer.currentTime < chapterTimes[3] && videocheck[3] == false) 
+        {
+          videocheck[3] =true;
+        }
+      if (videoPlayer.currentTime < chapterTimes[4] && videocheck[4] == false) 
+        {
+          videocheck[4] =true;
+        }
+      if (videoPlayer.currentTime < chapterTimes[5] && videocheck[5] == false) 
+        {
+          videocheck[5] =true;
+        }
+    };
 
-
-  // Update the progress bar as the video plays
-  videoPlayer.addEventListener("timeupdate", function () {
-    const progressPercentage = (videoPlayer.currentTime / videoPlayer.duration) * 100;
-    progressBar.style.width = `${progressPercentage}%`;
+videoPlayer.addEventListener("timeupdate",  onTimeUpdate) 
+    function onTimeUpdate() 
+  {
+      const progressPercentage = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+      progressBar.style.width = `${progressPercentage}%`;
 
     // Show buttons when video reaches item 2
-    if (videoPlayer.currentTime >= chapterTimes[2] && videoPlayer.currentTime < chapterTimes[2]+.2) 
+    if (videoPlayer.currentTime >= chapterTimes[2] && videoPlayer.currentTime < chapterTimes[2]+1  && videocheck[2] == true) 
     {
       btn1.style.opacity = 1; // Show button 1
       btn2.style.opacity = 1; // Show button 2
@@ -140,30 +174,14 @@ let chapterTimes = [0,22,52,75];
       btn5.style.zIndex = 1;
       btn6.style.zIndex = 1;
       videoPlayer.pause();
-    } else {
-      btn1.style.opacity = 0; // Hide button 1
-      btn2.style.opacity = 0; // Hide button 2
-      btn2.style.zIndex = -1;
-      btn1.style.zIndex = -1;
-      btn3.style.opacity = 0; // Hide button 1
-      btn3.style.zIndex = -1;
-      btn4.style.opacity = 0; // Hide button 1
-      btn4.style.zIndex = -1;
-      btn5.style.opacity = 0; // Hide button 1
-      btn6.style.opacity = 0; // Hide button 2
-      btn5.style.zIndex = -1;
-      btn6.style.zIndex = -1;
+      videocheck[2]=false;   
     }
-    if (videoPlayer.currentTime >= chapterTimes[3] && videoPlayer.currentTime < chapterTimes[3]+.2) 
+    if (videoPlayer.currentTime >= chapterTimes[3] && videoPlayer.currentTime < chapterTimes[3]+1  && videocheck[3] == true) 
       {
         btn7.style.opacity = 1; // Show button 1
         btn7.style.zIndex = 1;
         videoPlayer.pause();
-      } else {
-        btn7.style.opacity = 0; // Hide button 1
-        btn7.style.zIndex = -1;
-      }
+        videocheck[3]=false;      
+      } 
+    }
   });
-});
-
-
