@@ -29,7 +29,7 @@ const btnv6 = document.getElementById("btnv6");
 //-----------------------------adress markers--------------------------------------//
 const totalChapters = 4;
 const chapterNames = ["مقدمة", "المستشعر", "أنواع المستشعر", "المكونات"];
-let chapterTimes = [0,23,40,75,84];
+let chapterTimes = [0,23,40,79,84];
 let num =0;
 let labelPercentage = 0;
 
